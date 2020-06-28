@@ -69,18 +69,18 @@ CREATE TABLE media (
 DROP TABLE IF EXISTS product_shape;
 CREATE TABLE product_shape (
   id INT UNSIGNED NOT NULL PRIMARY KEY COMMENT 'Номер состояния товара',
-  shape_type VARCHAR(50) COMMENT 'Состояние товара'
+  shape_type VARCHAR(50) NOT NULL UNIQUE COMMENT 'Состояние товара'
   ) COMMENT = 'Таблица состояний товара';
 
 DROP TABLE IF EXISTS ads_type;
 CREATE TABLE ads_type (
   id INT UNSIGNED NOT NULL PRIMARY KEY COMMENT 'Номер типа объявления',
-  ad_type VARCHAR(50) COMMENT 'Тип объявления'
+  ad_type VARCHAR(50) NOT NULL UNIQUE COMMENT 'Тип объявления'
   ) COMMENT = 'Типы объявлений';
   
 DROP TABLE IF EXISTS ads_services;
 CREATE TABLE ads_services (
-  id INT UNSIGNED NOT NULL COMMENT 'Номер услуги',
+  id INT UNSIGNED NOT NULL PRIMARY KEY COMMENT 'Номер услуги',
   services_name VARCHAR(50) NOT NULL COMMENT 'Название услуги',
   premium_block TINYINT(1) UNSIGNED NOT NULL COMMENT 'Первые строчки результатов поиска',
   vip_block TINYINT(1) UNSIGNED NOT NULL COMMENT 'Промоблок в результатах поиска',
@@ -90,7 +90,7 @@ CREATE TABLE ads_services (
   
 DROP TABLE IF EXISTS extra_services;
 CREATE TABLE extra_services (
-  id INT UNSIGNED NOT NULL COMMENT 'Номер дополнительной услуги',
+  id INT UNSIGNED NOT NULL PRIMARY KEY COMMENT 'Номер дополнительной услуги',
   services_name VARCHAR(50) NOT NULL COMMENT 'Название дополнительной услуги',
   services_description TEXT NOT NULL COMMENT 'Описание дополнительной услуги',
   price DECIMAL(7,2) NOT NULL COMMENT 'Цена дополнительной услуги'
@@ -108,21 +108,21 @@ CREATE TABLE messages (
   
 DROP TABLE IF EXISTS remove_comment;
 CREATE TABLE remove_comment (
-  id INT UNSIGNED NOT NULL COMMENT 'Номер причины',
-  comment_name VARCHAR(50) COMMENT 'Причина снятия объявления'
+  id INT UNSIGNED NOT NULL PRIMARY KEY COMMENT 'Номер причины',
+  comment_name VARCHAR(50) NOT NULL UNIQUE COMMENT 'Причина снятия объявления'
   ) COMMENT = 'Список возможных причин снятия объявлений';
 
 DROP TABLE IF EXISTS FAQ;
 CREATE TABLE FAQ (
-  id INT UNSIGNED NOT NULL COMMENT 'Номер вопроса',
-  question_name VARCHAR(255) COMMENT 'Вопрос',
+  id INT UNSIGNED NOT NULL PRIMARY KEY COMMENT 'Номер вопроса',
+  question_name VARCHAR(255) NOT NULL UNIQUE COMMENT 'Вопрос',
   answer TEXT COMMENT 'Ответ на вопрос'
   ) COMMENT = 'Таблица с часто задаваемыми вопросами';
   
 DROP TABLE IF EXISTS wallet_payment;
 CREATE TABLE wallet_payment (
-  id INT UNSIGNED NOT NULL COMMENT 'Номер способа пополнения кошелька',
-  payment_method VARCHAR(50) NOT NULL COMMENT 'Способ пополнения кошелька',
+  id INT UNSIGNED NOT NULL PRIMARY KEY COMMENT 'Номер способа пополнения кошелька',
+  payment_method VARCHAR(50) NOT NULL UNIQUE COMMENT 'Способ пополнения кошелька',
   url_method VARCHAR(255) NOT NULL COMMENT 'Ссылка на сервис пополнения'
   ) COMMENT = 'Пополнение кошелька';
   
