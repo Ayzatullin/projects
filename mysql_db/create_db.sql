@@ -1,8 +1,8 @@
 CREATE DATABASE avito;
 USE avito;
 
-DROP TABLE IF EXISTS new_user;
-CREATE TABLE new_user (
+DROP TABLE IF EXISTS user;
+CREATE TABLE user (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'Номер пользователя',
   profile_name VARCHAR(100) COMMENT 'Имя для профиля',
   phone VARCHAR(120) COMMENT 'Номер мобильного',
@@ -21,11 +21,6 @@ CREATE TABLE profil (
   updated_at DATETIME DEFAULT NOW() ON UPDATE NOW() COMMENT 'Дата обновления профиля',
   user_status VARCHAR(100) COMMENT 'Статус пользователя',
   vk_profil VARCHAR(100) COMMENT 'Профиль вконтакте',
-  google_profil VARCHAR(100) COMMENT 'Профиль гугл',
-  ok_profil VARCHAR(100) COMMENT 'Профиль одноклассники',
-  facebook_profil VARCHAR(100) COMMENT 'Профиль фэйсбук',
-  apple_profil VARCHAR(100) COMMENT 'Профиль эпл',
-  purse_number INT COMMENT 'Номер авито кошелька',
   user_rating FLOAT(3,1) COMMENT 'Рейтинг пользователя'
 ) COMMENT = 'Профиль пользователя';
 
@@ -60,6 +55,7 @@ CREATE TABLE user_ads (
 DROP TABLE IF EXISTS media;
 CREATE TABLE media (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'Номер медиафайла',
+  user_id INT UNSIGNED NOT NULL COMMENT 'Номер пользователя',
   image_type VARCHAR(50) NOT NULL COMMENT 'Тип картинки',
   image BLOB NOT NULL COMMENT 'Изображение',
   image_size VARCHAR(50) NOT NULL COMMENT 'Размер изображения',
